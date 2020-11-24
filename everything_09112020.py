@@ -1,9 +1,19 @@
 import os
 import pdf2image
+from time import sleep
 
 
 class EverythingForms:
     def __init__(self, pdf_path, img_path):
+        """
+        :param pdf_path: caminho do PDF com o nome dos alunos
+        :param img_path: destino para as imagens
+
+
+        - Tranforma cada página do pdf em imagens.
+        - O nome do arquivo pdf se torna uma pasta.
+
+        """
         self.pdf_path = pdf_path
         self.img_path = img_path
         pass
@@ -22,7 +32,7 @@ class EverythingForms:
             if file.endswith(endswith.upper()) or file.endswith(endswith.lower()):
                 file_fim = f'{dire}\\{file}'
                 if not fullname:
-                    final.append(file)
+                    final.append(self.just_rename2upper(file))
                 else:
                     final.append(file_fim)
 
@@ -96,13 +106,19 @@ class EverythingForms:
         return name
 
 
-rout = EverythingForms(r'C:\Users\Silas\Desktop\projeto-mae\Atividades_outubro',
-                       'MATERIAS_CRIA_FILES-09112020')
+rout = EverythingForms(r'H:\mae_projeto_backup\maeportifolios_desktop_etc\Atividades_outubro_final',
+                       'MATERIAS_CRIA_FILES-13-11-2020')
+
+materias = ['Português', 'História', 'Geografia e Ciências', 'Matemática']
+
+for mater in materias[-1:]:
+    rout.transforma_pdf_em_img_por_materia(mater)
+    sleep(2.5)
 
 # rout.transforma_pdf_em_img_por_materia('Português')
-#rout.transforma_pdf_em_img_por_materia('História')
+# rout.transforma_pdf_em_img_por_materia('História')
 # rout.transforma_pdf_em_img_por_materia('Geografia e Ciências')
-rout.transforma_pdf_em_img_por_materia('Matemática')
+# rout.transforma_pdf_em_img_por_materia('Matemática')
 
 
 
